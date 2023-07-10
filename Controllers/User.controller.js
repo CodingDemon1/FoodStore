@@ -21,7 +21,8 @@ const UserRegister = async (req, res) => {
 
 		const isUserExist = await UserModel.findOne({ email });
 
-		if (isUserExist) return res.state(305).json({ msg: "User Already exists" });
+		if (isUserExist)
+			return res.status(400).json({ msg: "User Already exists" });
 
 		const hashedPassword = bcrypt.hashSync(password, 6);
 
